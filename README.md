@@ -24,7 +24,7 @@ and fluent-bit container to test it out.
 1. Clone this repo and change to the root of the project:
 
 ```
-git clone 
+git clone https://github.com/Nordstrom/docker-fluent-bit.git
 cd docker-fluent-bit
 ```
 
