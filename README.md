@@ -18,8 +18,8 @@ docker run --rm \
 
 #### Using docker compose
 
-You can use the docker-compose file to spin up an elasticsearch, kibana, 
-and fluent-bit container to test it out.
+You can use the docker-compose file to spin up elasticsearch, kibana, 
+and fluent-bit. Send some logs to fluent-bit and view them with kibana.
 
 1. Clone this repo and change to the root of the project:
 
