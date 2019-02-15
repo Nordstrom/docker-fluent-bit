@@ -37,7 +37,7 @@ docker-compose up
 
 3. Use your browser to connect to kibana http://localhost:5601
 
-4. Send a test log that fluent-bit should pickup
+4. Send a test log that fluent-bit can pickup
 
 ```
 echo "hello world" >> log/hello.log
