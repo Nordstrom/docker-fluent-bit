@@ -1,51 +1,43 @@
 ---
-version: '2'
+version: '3'
 services:
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:${ELASTICSEARCH_VERSION}
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.6.0
     container_name: elasticsearch
     environment:
-      - cluster.name=docker-cluster
-      - bootstrap.memory_lock=true
-      - xpack.security.enabled=false
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    - cluster.name=docker-cluster
+    - bootstrap.memory_lock=true
+    - xpack.security.enabled=false
+    - xpack.monitoring.enabled=false
+    - xpack.watcher.enabled=false
+    - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ports: ['9200:9200']
     ulimits:
       memlock:
         soft: -1
         hard: -1
-    mem_limit: 1g
-    ports: ['9200:9200']
+      mem_limit: 1g
 
   kibana:
-    image: docker.elastic.co/kibana/kibana:${ELASTICSEARCH_VERSION}
-    container_name: kibana
+    image: docker.elastic.co/kibana/kibana:6.6.0
     environment:
       SERVER_NAME: kibana
       ELASTICSEARCH_URL: http://elasticsearch:9200
     ports: ['5601:5601']
     depends_on: ['elasticsearch']
+    logging: { driver: none }
 
   fluent-bit:
     image: quay.io/nordstrom/fluent-bit:1.0.4
-    container_name: fluent-bit
     volumes: 
-      - ./log:/var/log
-    command:
-      - /fluent-bit/bin/fluent-bit
-      - -i
-      - tail
-      - -p
-      - Refresh_Interval=5
-      - -p
-      - path=/var/log/*.log
-      - -o
-      - es 
-      - -p
-      - Host=elasticsearch
-      - -p
-      - Port=9200
-      - -p
-      - Index=fluent_bit
-      - -p
-      - Type=logs
-    depends_on: ['elasticsearch']
+    - ./log:/var/log
+    command: |
+      /fluent-bit/bin/fluent-bit
+        -i tail
+        -p Refresh_Interval=10
+        -p path=/var/log/*.log
+        -o es
+        -p Host=elasticsearch
+        -p Port=9200
+        -p Index=fluent_bit
+        -p Type=logs
