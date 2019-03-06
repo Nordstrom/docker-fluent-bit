@@ -1,7 +1,7 @@
 docker-fluent-bit
 =================
 
-Docker image and example compose-file for running [Fluent Bit](https://fluentbit.io://fluentbit.io).
+Docker image and example compose-file for running [Fluent Bit](https://fluentbit.io).
 
 [![Docker Repository on Quay](https://quay.io/repository/nordstrom/fluent-bit/status "Docker Repository on Quay")](https://quay.io/repository/nordstrom/fluent-bit)
 
