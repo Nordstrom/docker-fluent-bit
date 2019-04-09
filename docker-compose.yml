@@ -28,7 +28,7 @@ services:
     logging: { driver: none }
 
   fluent-bit:
-    image: quay.io/nordstrom/fluent-bit:1.0.4
+    image: quay.io/nordstrom/fluent-bit:1.0.6
     volumes: 
     - ./log:/var/log
     command: |
