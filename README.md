@@ -14,13 +14,13 @@ The images are based on [hub.docker.come/r/fluent/fluent-bit](https://hub.docker
 Show the default user using the Busybox-based, debug image:
 
 ```
-docker run --rm quay.io/nordstrom/fluent-bit:1.0.6-debug ps -o user=----------
+docker run --rm quay.io/nordstrom/fluent-bit:1.1.1-debug ps -o user=----------
 ```
 
 Run the CPU-example from the [Getting Started](https://docs.fluentbit.io/manual/installation/docker#getting-started) documentation using the Distroless-based image:
 
 ```
-docker run quay.io/nordstrom/fluent-bit:1.0.6 /fluent-bit/bin/fluent-bit -i cpu -o stdout -f 1
+docker run quay.io/nordstrom/fluent-bit:1.1.1 /fluent-bit/bin/fluent-bit -i cpu -o stdout -f 1
 ```
 
 ### using Docker compose
